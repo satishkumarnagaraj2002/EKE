@@ -31,20 +31,18 @@ export default function Home() {
       <Navigation />
 
       {/* ============ HERO SECTION ============ */}
-      <section className="relative isolate flex min-h-[760px] items-center overflow-hidden bg-dark-primary pt-24 text-white md:min-h-screen">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/EKE.jpeg"
-            alt="Elite Karate Events lion emblem"
-            fill
-            priority
-            sizes="100vw"
-            className="scale-105 object-cover object-center opacity-35 blur-[2px] mix-blend-screen"
-          />
+      <section className="relative isolate flex min-h-[760px] items-center overflow-hidden bg-[#050609] pt-24 text-white md:min-h-screen">
+        <div className="absolute inset-0 z-0 bg-[#050609]" />
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-70"
+          style={{ backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 38px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 38px)" }}
+        />
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute -right-[12%] -top-[42%] h-[180%] w-[48%] rotate-[24deg] border-x border-white/[0.06] bg-[linear-gradient(90deg,transparent,rgba(215,25,32,0.07),transparent)]" />
+          <div className="absolute right-[17%] top-0 h-full w-px rotate-[24deg] bg-gradient-to-b from-transparent via-red-accent/50 to-transparent" />
+          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-red-accent/50 via-white/10 to-transparent" />
+          <div className="absolute right-10 top-28 h-28 w-28 border-r border-t border-amber-300/30" />
         </div>
-        <div className="absolute inset-0 z-0 bg-[linear-gradient(90deg,rgba(8,10,15,0.78)_0%,rgba(8,10,15,0.68)_52%,rgba(8,10,15,0.54)_100%)]" />
-        <div className="absolute inset-0 z-0 bg-[linear-gradient(0deg,#080A0F_0%,transparent_40%,rgba(8,10,15,0.22)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 z-0 opacity-20" style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 79px, rgba(255,255,255,0.08) 80px, transparent 81px)" }} />
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 px-5 py-20 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
           <div className="max-w-3xl">
@@ -53,9 +51,9 @@ export default function Home() {
               <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/85">The international karate stage</span>
             </div>
 
-            <h1 className="hero-headline text-left text-5xl leading-[0.94] sm:text-7xl lg:text-8xl">
+            <h1 className="hero-headline text-left text-5xl leading-[0.86] sm:text-7xl sm:leading-[0.94] lg:text-8xl">
               <span className="block">ELITE<br className="sm:hidden" /> KARATE</span>
-              <span className="hero-accent mt-8 block text-6xl leading-[0.95] text-red-accent sm:mt-3 sm:text-8xl lg:text-9xl">Events</span>
+              <span className="hero-accent mt-7 block text-6xl leading-[0.95] text-red-accent sm:mt-3 sm:text-8xl lg:text-9xl">Events</span>
             </h1>
 
             <p className="mt-7 max-w-xl font-display text-sm font-semibold uppercase tracking-[0.16em] text-white/75 md:text-base">
@@ -88,9 +86,9 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="relative mx-auto w-full max-w-md lg:ml-auto lg:mr-2">
-            <div className="absolute -left-4 -top-4 h-20 w-20 border-l border-t border-red-accent/70" />
-            <div className="relative border border-white/20 bg-[#080A0F]/65 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-md md:p-8">
+          <aside className="group/calendar relative mx-auto w-full max-w-md lg:ml-auto lg:mr-2">
+            <div className="absolute -left-4 -top-4 h-20 w-20 border-l border-t border-red-accent/70 transition-colors duration-300 group-hover/calendar:border-amber-300" />
+            <div className="relative border border-white/20 bg-[#080A0F]/65 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-red-accent/60 hover:bg-[#0d1017] hover:shadow-[0_28px_80px_rgba(215,25,32,0.18)] md:p-8">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">Next on the calendar</p>
               <p className="mt-5 font-display text-5xl font-bold leading-none text-white">24<span className="ml-2 text-2xl text-red-accent">/ OCT</span></p>
               <p className="mt-1 font-display text-lg font-semibold uppercase tracking-wider text-white/55">2026</p>
@@ -101,7 +99,7 @@ export default function Home() {
                 Event details <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="absolute -bottom-4 -right-4 h-20 w-20 border-b border-r border-amber-300/70" />
+            <div className="absolute -bottom-4 -right-4 h-20 w-20 border-b border-r border-amber-300/70 transition-colors duration-300 group-hover/calendar:border-red-accent" />
           </aside>
         </div>
 

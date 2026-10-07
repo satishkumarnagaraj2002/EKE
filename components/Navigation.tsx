@@ -42,7 +42,7 @@ export function Navigation() {
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-amber-300/80 bg-white shadow-[0_0_20px_rgba(224,186,84,0.24)] transition-transform duration-300 group-hover:scale-105">
               <Image src="/EKE.jpeg" alt="Elite Karate Events logo" fill sizes="44px" className="rounded-full object-cover" />
             </div>
-            <span className="hidden sm:block font-display text-sm font-bold leading-tight text-white uppercase">
+            <span className="font-display text-[10px] font-bold leading-[1.05] text-white uppercase sm:text-sm">
               ELITE KARATE<br />EVENTS
             </span>
           </Link>
