@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -30,19 +31,19 @@ export function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-dark-secondary/80 backdrop-blur-xl border-b border-white/10"
-          : "bg-transparent"
+          ? "bg-dark-secondary/95 backdrop-blur-xl border-b border-white/10"
+          : "bg-dark-secondary/90 backdrop-blur-xl border-b border-white/10"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-red rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="text-white font-black text-lg">L</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-amber-300/80 bg-white shadow-[0_0_20px_rgba(224,186,84,0.24)] transition-transform duration-300 group-hover:scale-105">
+              <Image src="/EKE.jpeg" alt="Elite Karate Events logo" fill sizes="44px" className="rounded-full object-cover" />
             </div>
-            <span className="hidden sm:inline font-black text-lg text-white uppercase tracking-wider">
-              LIGHT KARATE
+            <span className="hidden sm:block font-display text-sm font-bold leading-tight text-white uppercase">
+              ELITE KARATE<br />EVENTS
             </span>
           </Link>
 

@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@config "../tailwind.config.ts";
 @import "tailwindcss";
 
 @layer base {
   :root {
     --font-inter: "Inter", system-ui, sans-serif;
+    --font-display: var(--font-oswald), system-ui, sans-serif;
     --color-dark-primary: #080A0F;
     --color-dark-secondary: #11151D;
     --color-red-primary: #D71920;
@@ -21,7 +22,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-inter);
+    font-family: var(--font-display);
     @apply font-black tracking-tight;
   }
 
@@ -235,7 +236,15 @@
 
   /* HERO SECTION UTILITIES */
   .hero-headline {
-    @apply text-5xl md:text-6xl lg:text-7xl font-black leading-none text-white text-premium;
+    @apply text-5xl md:text-6xl lg:text-7xl font-black leading-none text-white;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-accent {
+    font-family: var(--font-playfair), Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0;
   }
 
   .hero-subtitle {
@@ -298,7 +307,8 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white text-premium;
+    @apply text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white;
+    letter-spacing: -0.015em;
   }
 
   .section-description {

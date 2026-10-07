@@ -7,13 +7,14 @@ import { Footer } from "@/components/Footer";
 import { Calendar, MapPin, Users, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const event = events.find((e) => e.slug === params.slug);
+  const { slug } = await params;
+  const event = events.find((event) => event.slug === slug);
   if (!event) {
     return {
       title: "Event Not Found",
@@ -44,8 +45,9 @@ const getStatusColor = (status: string) => {
   }
 };
 
-export default function EventDetailPage({ params }: Props) {
-  const event = events.find((e) => e.slug === params.slug);
+export default async function EventDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const event = events.find((event) => event.slug === slug);
 
   if (!event) {
     return (
@@ -106,7 +108,7 @@ export default function EventDetailPage({ params }: Props) {
               {/* Event Overview */}
               <div className="mb-12">
                 <h2 className="section-heading mb-6">About This Event</h2>
-                <p className="text-black/70 leading-relaxed mb-6">{event.overview}</p>
+                <p className="whitespace-pre-line text-black/70 leading-relaxed mb-6">{event.overview}</p>
               </div>
 
               {/* Competition Details */}
@@ -124,17 +126,19 @@ export default function EventDetailPage({ params }: Props) {
                       ))}
                     </ul>
                   </div>
-                  <div>
-                    <h3 className="font-bold mb-3">Age Groups</h3>
-                    <ul className="space-y-2">
-                      {event.ageGroups.map((age) => (
-                        <li key={age} className="flex items-center gap-2 text-black/70">
-                          <span className="w-2 h-2 rounded-full" style={{backgroundColor: "#C1121F"}}></span>
-                          {age}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {event.ageGroups.length > 0 && (
+                    <div>
+                      <h3 className="font-bold mb-3">Age Groups</h3>
+                      <ul className="space-y-2">
+                        {event.ageGroups.map((age) => (
+                          <li key={age} className="flex items-center gap-2 text-black/70">
+                            <span className="w-2 h-2 rounded-full" style={{backgroundColor: "#C1121F"}}></span>
+                            {age}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -142,7 +146,7 @@ export default function EventDetailPage({ params }: Props) {
               {event.rules && (
                 <div className="mb-12">
                   <h2 className="section-heading mb-6">Rules & Regulations</h2>
-                  <p className="text-black/70 leading-relaxed">{event.rules}</p>
+                  <p className="whitespace-pre-line text-black/70 leading-relaxed">{event.rules}</p>
                 </div>
               )}
             </div>
@@ -180,16 +184,18 @@ export default function EventDetailPage({ params }: Props) {
                     <p className="text-sm text-black/70">{event.address}</p>
                   </div>
 
-                  <div style={{borderTop: "1px solid rgba(0, 0, 0, 0.1)"}} className="pt-6">
-                    <p className="text-xs uppercase font-bold text-black/60 mb-2">Registration Deadline</p>
-                    <p className="font-bold">
-                      {new Date(event.registrationDeadline).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </p>
-                  </div>
+                  {event.registrationDeadline && (
+                    <div style={{borderTop: "1px solid rgba(0, 0, 0, 0.1)"}} className="pt-6">
+                      <p className="text-xs uppercase font-bold text-black/60 mb-2">Registration Deadline</p>
+                      <p className="font-bold">
+                        {new Date(event.registrationDeadline).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Organizer Info */}
@@ -203,18 +209,38 @@ export default function EventDetailPage({ params }: Props) {
                 </div>
 
                 {/* Registration Button */}
-                <Link
-                  href={`/register?event=${event.slug}`}
-                  className="w-full py-4 font-bold rounded-lg text-white transition-all hover:scale-105 active:scale-95 text-center flex items-center justify-center gap-2 btn-primary"
-                >
-                  REGISTER NOW
-                  <ArrowRight size={18} />
-                </Link>
+                {event.playerRegistrationUrl && event.clubRegistrationUrl ? (
+                  <div className="space-y-3">
+                    <a href={event.playerRegistrationUrl} target="_blank" rel="noopener noreferrer" className="w-full rounded-lg btn-primary py-4 text-center">
+                      PLAYER REGISTRATION <ArrowRight size={18} className="ml-2" />
+                    </a>
+                    <a href={event.clubRegistrationUrl} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center rounded-lg border border-red-primary/50 bg-white py-4 text-center font-bold text-red-primary transition hover:bg-red-primary hover:text-white">
+                      CLUB REGISTRATION <ArrowRight size={18} className="ml-2" />
+                    </a>
+                  </div>
+                ) : event.registrationUrl ? (
+                  <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" className="w-full rounded-lg btn-primary py-4 text-center">
+                    REGISTER NOW <ArrowRight size={18} className="ml-2" />
+                  </a>
+                ) : (
+                  <Link
+                    href={`/register?event=${event.slug}`}
+                    className="w-full rounded-lg btn-primary py-4 text-center"
+                  >
+                    REGISTER NOW
+                    <ArrowRight size={18} className="ml-2" />
+                  </Link>
+                )}
 
-                {/* Additional Actions */}
-                <button className="w-full mt-3 py-4 font-bold rounded-lg border-2 border-black bg-white text-black transition-all hover:bg-black hover:text-white">
-                  DOWNLOAD INFO
-                </button>
+                {event.bulletinUrl ? (
+                  <a href={event.bulletinUrl} target="_blank" rel="noopener noreferrer" className="mt-3 flex w-full items-center justify-center rounded-lg border border-black/20 bg-white py-4 font-bold text-black transition hover:bg-black hover:text-white">
+                    COMPETITION BULLETIN PDF
+                  </a>
+                ) : event.playerRegistrationUrl ? (
+                  <button type="button" disabled className="mt-3 w-full cursor-not-allowed rounded-lg border border-black/10 bg-black/5 py-4 font-bold text-black/40" title="The competition bulletin PDF has not been added to the site yet">
+                    COMPETITION BULLETIN PDF UNAVAILABLE
+                  </button>
+                ) : null}
               </div>
             </aside>
           </div>

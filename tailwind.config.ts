@@ -24,7 +24,7 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-oswald)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-hero": "linear-gradient(135deg, #080A0F 0%, #1a1f2a 100%)",

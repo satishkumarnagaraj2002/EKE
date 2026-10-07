@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Instagram, Facebook, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
+import { Instagram, Facebook, Mail, Phone } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,19 +20,19 @@ export function Footer() {
             {/* Brand Section */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center gap-3 mb-6 group">
-                <div className="w-12 h-12 bg-gradient-red rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  <span className="text-white font-black text-xl">L</span>
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-amber-300/80 bg-white shadow-[0_0_20px_rgba(224,186,84,0.24)] transition-transform duration-300 group-hover:scale-105">
+                  <Image src="/EKE.jpeg" alt="Elite Karate Events logo" fill sizes="48px" className="rounded-full object-cover" />
                 </div>
                 <div>
-                  <p className="font-black text-lg leading-none text-red-accent">LIGHT</p>
-                  <p className="text-xs text-white/60 uppercase tracking-wider">KARATE EVENTS</p>
+                  <p className="font-display text-lg font-bold leading-none text-white">ELITE KARATE</p>
+                  <p className="font-display text-xs font-semibold text-red-accent uppercase">Events</p>
                 </div>
               </Link>
               <p className="text-white/70 text-sm leading-relaxed mb-4">
                 Premium international karate championship organization.
               </p>
               <p className="text-white/40 text-xs font-semibold">
-                © {currentYear} Light Karate Events
+                © {currentYear} Elite Karate Events
               </p>
             </div>
 
@@ -113,15 +114,16 @@ export function Footer() {
               </h3>
               <div className="flex flex-wrap gap-3 mb-8">
                 {[
-                  { Icon: Instagram, href: "#", label: "Instagram" },
-                  { Icon: Facebook, href: "#", label: "Facebook" },
-                  { Icon: Youtube, href: "#", label: "YouTube" },
-                  { Icon: Mail, href: "#", label: "Email" },
+                  { Icon: Instagram, href: "https://www.instagram.com/elitekarateevents.uk?stkn=MWptemR0eGkwb2lybQ==", label: "Instagram" },
+                  { Icon: Facebook, href: "https://www.facebook.com/share/19eBBnf87R/", label: "Facebook" },
+                  { Icon: Mail, href: "mailto:info@elitekarateclub.net", label: "Email" },
                 ].map(({ Icon, href, label }) => (
                   <a
                     key={label}
                     href={href}
                     aria-label={label}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="w-10 h-10 rounded-lg bg-white/10 hover:bg-red-primary transition-all duration-300 flex items-center justify-center group/social hover:scale-110"
                   >
                     <Icon size={18} />
@@ -129,14 +131,14 @@ export function Footer() {
                 ))}
               </div>
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-white/70 text-xs">
+                <a href="tel:+447438052254" className="flex items-center gap-2 text-white/70 text-xs hover:text-white transition-colors">
                   <Phone size={14} className="text-red-accent" />
-                  <span>+1 (555) 000-0000</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/70 text-xs">
+                  <span>+44 7438052254</span>
+                </a>
+                <a href="mailto:info@elitekarateclub.net" className="flex items-center gap-2 text-white/70 text-xs hover:text-white transition-colors">
                   <Mail size={14} className="text-red-accent" />
-                  <span>info@lightkarateevents.com</span>
-                </div>
+                  <span>info@elitekarateclub.net</span>
+                </a>
               </div>
             </div>
           </div>

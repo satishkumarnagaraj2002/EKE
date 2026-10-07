@@ -35,36 +35,34 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             {/* Contact Info Cards */}
             <div className="card-premium p-8 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-lg flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
                 <Mail className="text-white" size={24} />
               </div>
-              <h3 className="font-black mb-2">Email</h3>
-              <p className="text-black/70 mb-4">
-                [contact@elitekarateevents.com - placeholder]
-              </p>
-              <p className="text-sm text-black/50">For general inquiries and support</p>
+              <h3 className="font-black text-white mb-2">Email</h3>
+              <a href="mailto:info@elitekarateclub.net" className="mb-4 inline-block text-white/80 hover:text-red-accent transition-colors">
+                info@elitekarateclub.net
+              </a>
+              <p className="text-sm text-white/50">For general inquiries and support</p>
             </div>
 
             <div className="card-premium p-8 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-lg flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
                 <Phone className="text-white" size={24} />
               </div>
-              <h3 className="font-black mb-2">Phone</h3>
-              <p className="text-black/70 mb-4">
-                [+44 XXXX XXXXXX - placeholder]
-              </p>
-              <p className="text-sm text-black/50">Available during business hours</p>
+              <h3 className="font-black text-white mb-2">Phone</h3>
+              <a href="tel:+447438052254" className="mb-4 inline-block text-white/80 hover:text-red-accent transition-colors">
+                +44 7438052254
+              </a>
+              <p className="text-sm text-white/50">Available during business hours</p>
             </div>
 
             <div className="card-premium p-8 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-lg flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center" style={{background: "linear-gradient(135deg, #8B0000 0%, #C1121F 100%)"}}>
                 <MapPin className="text-white" size={24} />
               </div>
-              <h3 className="font-black mb-2">Location</h3>
-              <p className="text-black/70 mb-4">
-                [Location - placeholder]
-              </p>
-              <p className="text-sm text-black/50">Serving the global karate community</p>
+              <h3 className="font-black text-white mb-2">Location</h3>
+              <p className="text-white/80 mb-4">United Kingdom</p>
+              <p className="text-sm text-white/50">Serving the global karate community</p>
             </div>
           </div>
 

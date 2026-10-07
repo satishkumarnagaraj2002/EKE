@@ -21,7 +21,7 @@ export const championships: Championship[] = [
     location: "London",
     country: "United Kingdom",
     date: "2026-03-15",
-    image: "/placeholder-championship-1.jpg",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1400&h=1000&fit=crop",
     status: "Completed",
     description: "The inaugural Elite Karate Championship London brought together elite athletes from across Europe in a three-day celebration of technical excellence and competitive spirit.",
     highlights: [
@@ -39,7 +39,7 @@ export const championships: Championship[] = [
     location: "London",
     country: "United Kingdom",
     date: "2027-03-15",
-    image: "/placeholder-championship-2.jpg",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400&h=1000&fit=crop",
     status: "Upcoming",
     description: "Building on the success of the inaugural championship, 2027 will bring even more international participation and expanded competition formats.",
     highlights: [
@@ -57,7 +57,7 @@ export const championships: Championship[] = [
     location: "Manchester",
     country: "United Kingdom",
     date: "2027-05-10",
-    image: "/placeholder-championship-3.jpg",
+    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1400&h=1000&fit=crop",
     status: "Upcoming",
     description: "A complementary international competition providing opportunities for developing and established athletes alike.",
     highlights: [
@@ -75,7 +75,7 @@ export const championships: Championship[] = [
     location: "Brighton",
     country: "United Kingdom",
     date: "2027-06-20",
-    image: "/placeholder-championship-4.jpg",
+    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1400&h=1000&fit=crop",
     status: "Upcoming",
     description: "Dedicated championship for young karate athletes providing a pathway to elite competition.",
     highlights: [
