@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Trophy, Users, Zap, Heart, Download } from "lucide-react";
+import { ArrowRight, Trophy, Users, Zap, Heart, Download, Instagram, ArrowUpRight } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { EventCard } from "@/components/EventCard";
@@ -13,6 +13,7 @@ import { events } from "@/data/events";
 import { championships } from "@/data/championships";
 import { athletes } from "@/data/athletes";
 import { news } from "@/data/news";
+import { instagramPosts } from "@/data/instagram";
 
 export const metadata: Metadata = {
   title: "Elite Karate Events | International Karate Championships",
@@ -333,42 +334,53 @@ export default function Home() {
       </section>
 
       {/* GALLERY */}
-      <section className="section-py bg-white relative overflow-hidden">
+      <section className="section-py relative overflow-hidden bg-[#f4f2ee]">
         <div className="section-container section-px relative z-10">
-          <div className="section-header">
-            <span className="section-label">VISUAL</span>
-            <h2 className="section-title">Experience The Moment</h2>
-            <p className="section-description">Premium photography from international karate championships.</p>
+          <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="section-label">FROM INSTAGRAM</span>
+              <h2 className="section-title">Inside the action</h2>
+              <p className="section-description">Tournament moments and the latest from the Elite Open Grand Prix.</p>
+            </div>
+            <a href="https://www.instagram.com/elitekarateevents.uk/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 self-start border-b border-[#d71920]/40 pb-2 font-display text-sm font-bold uppercase tracking-wider text-[#17191d] transition-colors hover:border-[#d71920] hover:text-[#d71920] md:self-auto">
+              <Instagram size={17} /> Follow on Instagram <ArrowUpRight size={15} />
+            </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-            {[
-              "https://images.unsplash.com/photo-1584735175097-24340077477d?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1552674605-5defe6aa44bb?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop",
-              "https://images.unsplash.com/photo-1549719386-74dfaf00b474?w=500&h=500&fit=crop",
-            ].map((image, idx) => (
-              <div key={idx} className="image-card h-64 group rounded-2xl overflow-hidden">
+          <div className="grid gap-4 md:min-h-[540px] md:grid-cols-[1.15fr_0.85fr]">
+            {instagramPosts.slice(0, 3).map((post, index) => (
+              <a
+                key={post.id}
+                href={post.postUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group relative isolate min-h-[280px] overflow-hidden border border-black/10 bg-[#080a0f] ${index === 0 ? "md:row-span-2 md:min-h-0" : "md:min-h-0"}`}
+                aria-label={`${post.caption}, view Instagram post`}
+              >
                 <Image
-                  src={image}
-                  alt={`Gallery ${idx + 1}`}
+                  src={post.image}
+                  alt={post.alt}
                   fill
-                  className="w-full h-full object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className={`${post.fit === "contain" ? "object-contain p-3 md:p-5" : "object-cover"} transition-transform duration-700 group-hover:scale-[1.03]`}
+                  sizes={index === 0 ? "(max-width: 768px) 100vw, 60vw" : "(max-width: 768px) 100vw, 40vw"}
                 />
-                <div className="image-overlay"></div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white md:p-7">
+                  <div>
+                    <p className="font-display text-[10px] font-semibold uppercase tracking-[0.2em] text-white/65">{post.date}</p>
+                    <p className="mt-2 font-display text-xl font-bold uppercase leading-tight md:text-2xl">{post.caption}</p>
+                  </div>
+                  <span className="mb-1 inline-flex h-10 w-10 shrink-0 items-center justify-center border border-white/45 bg-black/20 transition-colors group-hover:border-white group-hover:bg-[#d71920]">
+                    <ArrowUpRight size={18} />
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
 
-          <div className="text-center">
+          <div className="mt-8 flex justify-center">
             <Link href="/gallery" className="btn-primary inline-flex items-center gap-2">
-              VIEW FULL GALLERY
-              <ArrowRight size={18} />
+              VIEW FULL GALLERY <ArrowRight size={18} />
             </Link>
           </div>
         </div>

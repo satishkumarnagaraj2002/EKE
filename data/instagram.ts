@@ -1,0 +1,38 @@
+export const instagramPosts = [
+  {
+    id: "grand-prix-athletes",
+    image: "/instagram-january-event.jpg",
+    alt: "Elite Open 10th International Karate Grand Prix artwork featuring karate athletes",
+    caption: "Meet the athletes taking the stage",
+    date: "January 21, 2026",
+    postUrl: "https://www.instagram.com/elitekarateevents.uk/p/DTycL7IDEjN/",
+    fit: "cover",
+  },
+  {
+    id: "medals-ready",
+    image: "/instagram-october-04.jpg",
+    alt: "Gold, silver, and bronze Elite Open medals for the 2026 Grand Prix",
+    caption: "The medals are ready to shine",
+    date: "October 4, 2026",
+    postUrl: "https://www.instagram.com/elitekarateevents.uk/p/DeFE_giutmy/",
+    fit: "contain",
+  },
+  {
+    id: "grand-prix-countdown",
+    image: "/instagram-countdown.jpg",
+    alt: "Two days left to register for the Elite Open Grand Prix on October 24, 2026",
+    caption: "Two days left to register",
+    date: "October 8, 2026",
+    postUrl: "https://www.instagram.com/elitekarateevents.uk/p/DeOfttxOisL/",
+    fit: "contain",
+  },
+  {
+    id: "grand-prix-campaign",
+    image: "/instagram-september-poster.jpg",
+    alt: "Elite Open International Karate Grand Prix campaign artwork",
+    caption: "The road to the Grand Prix",
+    date: "September 27, 2026",
+    postUrl: "https://www.instagram.com/elitekarateevents.uk/p/Dd0i4BPO42v/",
+    fit: "contain",
+  },
+] as const;
