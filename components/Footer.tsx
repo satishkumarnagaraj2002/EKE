@@ -153,6 +153,27 @@ export function Footer() {
               Bringing athletes, dojos, and officials together through world-class karate events.
             </p>
           </div>
+
+          <div className="relative mt-14 border-t border-white/10 px-4 pt-10 text-center md:mt-16 md:pt-12">
+            <span aria-hidden="true" className="absolute left-1/2 top-0 h-px w-24 -translate-x-1/2 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+            <p className="font-[family-name:var(--font-playfair)] text-2xl font-semibold leading-tight text-white sm:text-3xl">
+              SATISH KUMAR NAGARAJ
+            </p>
+            <span aria-hidden="true" className="mx-auto mt-3 block h-[3px] w-48 max-w-full bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200" />
+            <div className="mt-3 flex items-center justify-center gap-3">
+              <span aria-hidden="true" className="h-px w-7 bg-gradient-to-r from-transparent to-[#78d8ce]/80 sm:w-10" />
+              <p className="font-[family-name:var(--font-playfair)] text-sm font-semibold italic tracking-[0.06em] text-[#a8eee2] drop-shadow-[0_0_14px_rgba(119,217,203,0.2)] sm:text-base">
+                Performance &amp; Data Analyst
+              </p>
+              <span aria-hidden="true" className="h-px w-7 bg-gradient-to-l from-transparent to-[#78d8ce]/80 sm:w-10" />
+            </div>
+            <p className="mt-5 font-display text-xs font-semibold uppercase tracking-[0.16em] text-white/75 sm:text-sm">
+              Website design &amp; development
+            </p>
+            <p className="mt-2 text-xs text-white/45">
+              Designed, developed &amp; maintained in-house
+            </p>
+          </div>
         </div>
       </div>
     </footer>
