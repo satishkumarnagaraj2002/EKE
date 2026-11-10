@@ -44,6 +44,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {[
                   { href: "/events", label: "Upcoming Events" },
+                  { href: "/past-events", label: "Past Events" },
                   { href: "/championships", label: "Championships" },
                   { href: "/results", label: "Results" },
                   { href: "/athletes", label: "Athletes" },
@@ -69,7 +70,7 @@ export function Footer() {
                 {[
                   { href: "/news", label: "News" },
                   { href: "/gallery", label: "Gallery" },
-                  { href: "/about", label: "About" },
+                  { href: "/about", label: "About Us" },
                   { href: "/contact", label: "Contact" },
                 ].map((link) => (
                   <li key={link.href}>
@@ -116,7 +117,7 @@ export function Footer() {
                 {[
                   { Icon: Instagram, href: "https://www.instagram.com/elitekarateevents.uk?stkn=MWptemR0eGkwb2lybQ==", label: "Instagram" },
                   { Icon: Facebook, href: "https://www.facebook.com/share/19eBBnf87R/", label: "Facebook" },
-                  { Icon: Mail, href: "mailto:info@elitekarateclub.net", label: "Email" },
+                  { Icon: Mail, href: "mailto:elitekaratelondon@gmail.com", label: "Email" },
                 ].map(({ Icon, href, label }) => (
                   <a
                     key={label}
@@ -135,9 +136,9 @@ export function Footer() {
                   <Phone size={14} className="text-red-accent" />
                   <span>+44 7438052254</span>
                 </a>
-                <a href="mailto:info@elitekarateclub.net" className="flex items-center gap-2 text-white/70 text-xs hover:text-white transition-colors">
+                <a href="mailto:elitekaratelondon@gmail.com" className="flex items-center gap-2 text-white/70 text-xs hover:text-white transition-colors">
                   <Mail size={14} className="text-red-accent" />
-                  <span>info@elitekarateclub.net</span>
+                  <span>elitekaratelondon@gmail.com</span>
                 </a>
               </div>
             </div>
@@ -156,21 +157,21 @@ export function Footer() {
 
           <div className="relative mt-14 border-t border-white/10 px-4 pt-10 text-center md:mt-16 md:pt-12">
             <span aria-hidden="true" className="absolute left-1/2 top-0 h-px w-24 -translate-x-1/2 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <p className="font-[family-name:var(--font-playfair)] text-2xl font-semibold leading-tight text-white sm:text-3xl">
+            <p className="font-[family-name:var(--font-playfair)] text-lg font-semibold leading-tight text-white sm:text-xl">
               SATISH KUMAR NAGARAJ
             </p>
             <span aria-hidden="true" className="mx-auto mt-3 block h-[3px] w-48 max-w-full bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200" />
             <div className="mt-3 flex items-center justify-center gap-3">
               <span aria-hidden="true" className="h-px w-7 bg-gradient-to-r from-transparent to-[#78d8ce]/80 sm:w-10" />
-              <p className="font-[family-name:var(--font-playfair)] text-sm font-semibold italic tracking-[0.06em] text-[#a8eee2] drop-shadow-[0_0_14px_rgba(119,217,203,0.2)] sm:text-base">
+              <p className="font-[family-name:var(--font-playfair)] text-xs font-semibold italic tracking-[0.06em] text-[#a8eee2] drop-shadow-[0_0_14px_rgba(119,217,203,0.2)] sm:text-sm">
                 Performance &amp; Data Analyst
               </p>
               <span aria-hidden="true" className="h-px w-7 bg-gradient-to-l from-transparent to-[#78d8ce]/80 sm:w-10" />
             </div>
-            <p className="mt-5 font-display text-xs font-semibold uppercase tracking-[0.16em] text-white/75 sm:text-sm">
+            <p className="mt-5 font-display text-[10px] font-semibold uppercase tracking-[0.16em] text-white/75 sm:text-xs">
               Website design &amp; development
             </p>
-            <p className="mt-2 text-xs text-white/45">
+            <p className="mt-2 text-[10px] text-white/45">
               Designed, developed &amp; maintained in-house
             </p>
           </div>

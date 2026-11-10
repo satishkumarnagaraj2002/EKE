@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: "Discover karate competitions, championships, events, results and athlete highlights with Elite Karate Events.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1584735175097-24340077477d?w=1200&h=630&fit=crop",
+        url: "/WhatsApp Image 2026-11-10 at 6.07.19 PM (2).jpeg",
         width: 1200,
         height: 630,
         alt: "Elite Karate Events",

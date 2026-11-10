@@ -43,43 +43,28 @@ export function EventCard({
     <Link href={`/events/${slug}`}>
       <div className="card-premium group cursor-pointer">
         {/* Image Container */}
-        <div className="relative h-64 overflow-hidden bg-dark-secondary">
+        <div className="relative h-64 overflow-hidden bg-white">
           <Image
             src={image}
             alt={name}
             fill
-            className="object-cover group-hover:scale-110 transition-transform duration-700"
+            className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          
-          {/* Premium Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary via-black/40 to-transparent"></div>
-
-          {/* Top Badges */}
-          <div className="absolute top-4 left-4 right-4 flex justify-between items-start gap-3">
-            {/* Type Badge */}
-            <div className="bg-red-primary/90 backdrop-blur-md px-3 py-1.5 rounded text-xs font-black uppercase text-white whitespace-nowrap">
-              {type}
-            </div>
-
-            {/* Status Badge */}
-            <div className={`backdrop-blur-md px-3 py-1.5 rounded text-xs font-black uppercase border flex items-center gap-1.5 ${statusColor}`}>
-              <Zap size={11} className="flex-shrink-0" />
-              {statusText}
-            </div>
-          </div>
-
-          {/* Event Name Overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="font-black text-lg text-white line-clamp-2">
-              {name}
-            </h3>
-          </div>
         </div>
 
         {/* Content Section */}
         <div className="p-6 bg-dark-secondary/50">
           <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="rounded bg-red-primary/15 px-3 py-1 text-xs font-black uppercase text-red-accent">{type}</span>
+              <span className={`inline-flex items-center gap-1.5 rounded border px-3 py-1 text-xs font-black uppercase ${statusColor}`}>
+                <Zap size={11} className="flex-shrink-0" />
+                {statusText}
+              </span>
+            </div>
+            <h3 className="font-display text-xl font-bold uppercase leading-tight text-white">{name}</h3>
+
             {/* Info Grid */}
             <div className="space-y-3">
               {/* Date */}
@@ -88,7 +73,7 @@ export function EventCard({
                 <div className="flex-1 min-w-0">
                   <p className="info-label">Date</p>
                   <p className="info-value">
-                    {new Date(date).toLocaleDateString("en-US", { 
+                    {new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
                       month: "short", 
                       day: "numeric"
                     })}

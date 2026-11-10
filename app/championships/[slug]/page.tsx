@@ -67,16 +67,15 @@ export default function ChampionshipDetailPage({ params }: Props) {
       <Navigation />
 
       {/* Hero Section with Image */}
-      <section className="relative w-full h-96 md:h-[500px] overflow-hidden bg-gray-200">
+      <section className="relative w-full h-96 md:h-[500px] overflow-hidden bg-dark-primary">
         <Image
           src={championship.image}
           alt={championship.name}
           fill
-          className="object-cover"
+          className="object-contain"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
       </section>
 
       {/* Championship Content */}

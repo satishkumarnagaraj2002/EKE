@@ -39,8 +39,8 @@ export default function ContactPage() {
                 <Mail className="text-white" size={24} />
               </div>
               <h3 className="font-black text-white mb-2">Email</h3>
-              <a href="mailto:info@elitekarateclub.net" className="mb-4 inline-block text-white/80 hover:text-red-accent transition-colors">
-                info@elitekarateclub.net
+              <a href="mailto:elitekaratelondon@gmail.com" className="mb-4 inline-block text-white/80 hover:text-red-accent transition-colors">
+                elitekaratelondon@gmail.com
               </a>
               <p className="text-sm text-white/50">For general inquiries and support</p>
             </div>

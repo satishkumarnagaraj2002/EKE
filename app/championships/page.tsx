@@ -50,10 +50,8 @@ export default function ChampionshipsPage() {
           </div>
 
           <Link href={`/championships/${featuredChampionship.slug}`} className="group grid overflow-hidden rounded-lg bg-dark-secondary text-white shadow-[0_18px_48px_rgba(10,14,20,0.15)] transition hover:shadow-[0_24px_58px_rgba(10,14,20,0.24)] lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="relative min-h-72 overflow-hidden lg:min-h-[430px]">
-              <Image src={featuredChampionship.image} alt={featuredChampionship.name} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/65 via-transparent to-transparent" />
-              <span className="absolute left-5 top-5 bg-red-primary px-4 py-2 font-display text-sm font-bold uppercase tracking-wider">{featuredChampionship.year} / {featuredChampionship.status}</span>
+            <div className="relative min-h-72 overflow-hidden bg-white lg:min-h-[430px]">
+              <Image src={featuredChampionship.image} alt={featuredChampionship.name} fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-contain p-3" />
             </div>
             <div className="flex flex-col justify-center p-6 md:p-10 lg:p-12">
               <p className="mb-4 font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">{featuredChampionship.location}, {featuredChampionship.country}</p>
@@ -80,13 +78,11 @@ export default function ChampionshipsPage() {
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {otherChampionships.map((championship) => (
               <Link key={championship.id} href={`/championships/${championship.slug}`} className="group overflow-hidden border border-black/10 bg-white transition hover:border-red-primary/40 hover:shadow-[0_18px_44px_rgba(10,14,20,0.12)]">
-                <div className="relative h-60 overflow-hidden bg-dark-secondary">
-                  <Image src={championship.image} alt={championship.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/75 via-transparent to-transparent" />
-                  <span className="absolute left-4 top-4 bg-dark-primary/75 px-3 py-1.5 font-display text-xs font-bold uppercase tracking-wider text-white">{championship.status}</span>
-                  <span className="absolute bottom-4 left-5 font-display text-4xl font-bold text-white">{championship.year}</span>
+                <div className="relative h-60 overflow-hidden bg-white">
+                  <Image src={championship.image} alt={championship.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-contain p-2" />
                 </div>
                 <div className="p-5">
+                  <p className="font-display text-xs font-bold uppercase tracking-wider text-red-primary">{championship.year} / {championship.status}</p>
                   <h3 className="font-display text-xl font-bold uppercase leading-tight text-dark-primary">{championship.name}</h3>
                   <p className="mt-3 flex items-center gap-2 text-sm text-black/55"><MapPin size={15} className="text-red-primary" />{championship.location}, {championship.country}</p>
                   <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-black/65">{championship.description}</p>

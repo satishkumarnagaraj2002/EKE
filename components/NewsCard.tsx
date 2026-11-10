@@ -26,15 +26,14 @@ export function NewsCard({
       <div className={`card-premium group cursor-pointer ${featured ? "lg:col-span-2" : ""}`}>
         <div className={`${featured ? "lg:flex" : ""} overflow-hidden`}>
           {/* Image */}
-          <div className={`relative bg-dark-secondary overflow-hidden ${featured ? "lg:w-1/2 lg:h-80" : "h-56"}`}>
+          <div className={`relative bg-white overflow-hidden ${featured ? "lg:w-1/2 lg:h-80" : "h-56"}`}>
             <Image
               src={image}
               alt={title}
               fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
+              className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"
               sizes={featured ? "50vw" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary via-black/20 to-transparent"></div>
           </div>
 
           {/* Content */}

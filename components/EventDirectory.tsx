@@ -8,9 +8,11 @@ import type { Event } from "@/data/events";
 
 interface EventDirectoryProps {
   events: Event[];
+  heading?: string;
+  eyebrow?: string;
 }
 
-export function EventDirectory({ events }: EventDirectoryProps) {
+export function EventDirectory({ events, heading = "Choose your next challenge", eyebrow = "The calendar" }: EventDirectoryProps) {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [type, setType] = useState("");
@@ -33,8 +35,8 @@ export function EventDirectory({ events }: EventDirectoryProps) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-red-primary">The calendar</p>
-            <h2 className="font-display text-3xl font-bold uppercase text-dark-primary md:text-4xl">Choose your next challenge</h2>
+            <p className="mb-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-red-primary">{eyebrow}</p>
+            <h2 className="font-display text-3xl font-bold uppercase text-dark-primary md:text-4xl">{heading}</h2>
           </div>
           <p className="text-sm font-semibold text-black/50">{filteredEvents.length} {filteredEvents.length === 1 ? "EVENT" : "EVENTS"}</p>
         </div>
@@ -93,14 +95,10 @@ export function EventDirectory({ events }: EventDirectoryProps) {
                   className={`group relative isolate overflow-hidden rounded-lg bg-dark-secondary text-white shadow-[0_14px_40px_rgba(10,14,20,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(10,14,20,0.2)] ${featured ? "sm:col-span-2 sm:grid sm:grid-cols-[1.2fr_0.8fr]" : ""}`}
                 >
                   <div className={`relative min-h-60 overflow-hidden ${featured ? "sm:min-h-80" : "h-60"}`}>
-                    <Image src={event.image} alt={event.name} fill sizes={featured ? "(max-width: 640px) 100vw, 66vw" : "(max-width: 1280px) 50vw, 33vw"} className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/90 via-dark-primary/10 to-transparent" />
+                    <Image src={event.image} alt={event.name} fill sizes={featured ? "(max-width: 640px) 100vw, 66vw" : "(max-width: 1280px) 50vw, 33vw"} className="object-contain transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-2">
                       <span className="rounded bg-red-primary px-3 py-1.5 font-display text-xs font-bold uppercase tracking-wider text-white">{event.type}</span>
                       <span className={`rounded border px-3 py-1.5 text-xs font-semibold ${statusStyle}`}>{event.registrationStatus}</span>
-                    </div>
-                    <div className="absolute bottom-5 left-5 right-5 sm:hidden">
-                      <h3 className="font-display text-2xl font-bold uppercase leading-tight">{event.name}</h3>
                     </div>
                   </div>
 
@@ -109,9 +107,9 @@ export function EventDirectory({ events }: EventDirectoryProps) {
                       <div className="mb-3 hidden items-center gap-2 text-xs font-semibold uppercase tracking-wider text-red-accent sm:flex">
                         <Trophy size={14} /> Elite Karate Events
                       </div>
-                      <h3 className="mb-4 hidden font-display text-2xl font-bold uppercase leading-tight sm:block">{event.name}</h3>
+                      <h3 className="mb-4 font-display text-2xl font-bold uppercase leading-tight">{event.name}</h3>
                       <div className="space-y-3 text-sm text-white/75">
-                        <p className="flex items-center gap-2"><CalendarDays size={16} className="text-red-accent" />{new Date(event.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
+                        <p className="flex items-center gap-2"><CalendarDays size={16} className="text-red-accent" />{new Date(`${event.date}T12:00:00`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</p>
                         <p className="flex items-center gap-2"><MapPin size={16} className="text-red-accent" />{event.venue}, {event.location}</p>
                       </div>
                     </div>

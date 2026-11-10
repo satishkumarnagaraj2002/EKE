@@ -31,8 +31,7 @@ export default function GalleryPage() {
             </a>
           </div>
           <div className="relative aspect-[1.45] overflow-hidden border border-white/15 bg-[#11151d] shadow-[0_28px_80px_rgba(0,0,0,0.45)]">
-            <Image src={instagramPosts[0].image} alt={instagramPosts[0].alt} fill priority className="object-cover transition-transform duration-700 hover:scale-[1.02]" sizes="(max-width: 1024px) 100vw, 58vw" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-transparent" />
+            <Image src={instagramPosts[0].image} alt={instagramPosts[0].alt} fill priority className="object-contain p-2 transition-transform duration-700 hover:scale-[1.02]" sizes="(max-width: 1024px) 100vw, 58vw" />
             <span className="absolute bottom-4 left-4 border border-white/30 bg-black/45 px-3 py-2 font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm md:bottom-6 md:left-6">10th Elite Open · Crawley, England</span>
           </div>
         </div>

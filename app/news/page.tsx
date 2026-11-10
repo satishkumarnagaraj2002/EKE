@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { NewsCard } from "@/components/NewsCard";
 import { news } from "@/data/news";
-import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "News | Elite Karate Events",
-  description: "Latest news and updates from Elite Karate Events. Competition results, athlete interviews, and event announcements.",
+  description: "Event announcements and updates from Elite Karate Events.",
 };
 
 export default function NewsPage() {

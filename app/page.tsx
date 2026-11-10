@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Trophy, Users, Zap, Heart, Download, Instagram, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Trophy, Users, Zap, Heart, Instagram, ArrowUpRight } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { EventCard } from "@/components/EventCard";
 import { ChampionshipCard } from "@/components/ChampionshipCard";
-import { AthleteCard } from "@/components/AthleteCard";
 import { NewsCard } from "@/components/NewsCard";
-import { FeaturedCommunityEvents } from "@/components/FeaturedCommunityEvents";
-import { events } from "@/data/events";
-import { championships } from "@/data/championships";
+import { getUpcomingEvents } from "@/data/events";
+import { getUpcomingChampionships } from "@/data/championships";
 import { athletes } from "@/data/athletes";
 import { news } from "@/data/news";
 import { instagramPosts } from "@/data/instagram";
@@ -21,11 +19,15 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const grandPrix = events.find((event) => event.slug === "elite-open-10th-international-karate-grand-prix-2026");
-  const upcomingEvents = events.slice(0, 3);
-  const featuredChampionships = championships.slice(0, 4);
-  const featuredAthletes = athletes.filter((a) => a.featured);
-  const featuredNews = news.slice(0, 3);
+  const upcomingEvents = getUpcomingEvents().slice(0, 4);
+  const nextEvent = upcomingEvents[0];
+  const featuredChampionships = getUpcomingChampionships()
+    .filter((championship) => championship.year === 2027)
+    .slice(0, 3);
+  const featuredAthletes = athletes;
+  const featuredNews = [...news]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <main className="bg-white">
@@ -49,35 +51,35 @@ export default function Home() {
           <div className="max-w-3xl">
             <div className="mb-7 inline-flex items-center gap-3 border-l-2 border-red-accent bg-black/25 px-4 py-2.5 backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-red-accent shadow-[0_0_12px_rgba(240,39,50,0.9)]" />
-              <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/85">The international karate stage</span>
+              <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/85">Three international events / England</span>
             </div>
 
             <h1 className="hero-headline text-left text-5xl leading-[0.86] sm:text-7xl sm:leading-[0.94] lg:text-8xl">
-              <span className="block">ELITE<br className="sm:hidden" /> KARATE</span>
-              <span className="hero-accent mt-7 block text-6xl leading-[0.95] text-red-accent sm:mt-3 sm:text-8xl lg:text-9xl">Events</span>
+              <span className="block">2027<br className="sm:hidden" /> KARATE</span>
+              <span className="hero-accent mt-7 block text-6xl leading-[0.95] text-red-accent sm:mt-3 sm:text-8xl lg:text-9xl">Calendar</span>
             </h1>
 
             <p className="mt-7 max-w-xl font-display text-sm font-semibold uppercase tracking-[0.16em] text-white/75 md:text-base">
-              Where athletes excel.<br className="sm:hidden" /> Champions rise.
+              Harlow Open. Lions Open. Elite Open.
             </p>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-              Premium international karate competitions bringing together elite athletes, professional dojos, and passionate officials from across the globe.
+              Three major international karate competitions are coming to Harlow, England. We look forward to welcoming clubs, athletes, coaches and officials from across the UK and around the world.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/events" className="btn-primary flex items-center justify-center gap-2">
-                EXPLORE EVENTS <ArrowRight size={18} />
+                UPCOMING EVENTS <ArrowRight size={18} />
               </Link>
-              <Link href="/register" className="btn-secondary flex items-center justify-center gap-2">
-                REGISTER NOW
+              <Link href="/contact" className="btn-secondary flex items-center justify-center gap-2">
+                CONTACT US
               </Link>
             </div>
 
             <div className="mt-12 grid max-w-2xl grid-cols-3 border-y border-white/20 py-5">
               {[
-                { value: "800+", label: "Competitors" },
-                { value: "18", label: "Countries" },
-                { value: "4", label: "Disciplines" },
+                { value: "3", label: "Competitions" },
+                { value: "1", label: "Harlow venue" },
+                { value: "2027", label: "Season" },
               ].map((stat) => (
                 <div key={stat.label} className="border-r border-white/15 px-3 first:pl-0 last:border-r-0">
                   <p className="font-display text-3xl font-bold text-white md:text-4xl">{stat.value}</p>
@@ -90,15 +92,21 @@ export default function Home() {
           <aside className="group/calendar relative mx-auto w-full max-w-md lg:ml-auto lg:mr-2">
             <div className="absolute -left-4 -top-4 h-20 w-20 border-l border-t border-red-accent/70 transition-colors duration-300 group-hover/calendar:border-amber-300" />
             <div className="relative border border-white/20 bg-[#080A0F]/65 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-red-accent/60 hover:bg-[#0d1017] hover:shadow-[0_28px_80px_rgba(215,25,32,0.18)] md:p-8">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">Next on the calendar</p>
-              <p className="mt-5 font-display text-5xl font-bold leading-none text-white">24<span className="ml-2 text-2xl text-red-accent">/ OCT</span></p>
-              <p className="mt-1 font-display text-lg font-semibold uppercase tracking-wider text-white/55">2026</p>
-              <div className="my-6 h-px bg-white/15" />
-              <p className="font-display text-2xl font-bold uppercase leading-tight">Elite Open<br />International Grand Prix</p>
-              <p className="mt-3 text-sm text-white/60">K2 Crawley · England</p>
-              <Link href="/events/elite-open-10th-international-karate-grand-prix-2026" className="mt-7 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-red-accent">
-                Event details <ArrowRight size={16} />
-              </Link>
+              {nextEvent && (
+                <>
+                  <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">Next on the calendar</p>
+                  <p className="mt-5 font-display text-3xl font-bold leading-tight text-white">{nextEvent.name}</p>
+                  <p className="mt-3 text-sm font-semibold text-white/70">
+                    {new Date(`${nextEvent.date}T12:00:00`).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                  </p>
+                  <div className="my-6 h-px bg-white/15" />
+                  <p className="font-display text-lg font-semibold uppercase leading-tight">{nextEvent.venue}</p>
+                  <p className="mt-2 text-sm text-white/60">{nextEvent.address}</p>
+                  <Link href={`/events/${nextEvent.slug}`} className="mt-7 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-red-accent">
+                    Event details <ArrowRight size={16} />
+                  </Link>
+                </>
+              )}
             </div>
             <div className="absolute -bottom-4 -right-4 h-20 w-20 border-b border-r border-amber-300/70 transition-colors duration-300 group-hover/calendar:border-red-accent" />
           </aside>
@@ -110,66 +118,48 @@ export default function Home() {
         </div>
       </section>
 
-      {grandPrix && (
-        <section className="relative overflow-hidden bg-[#091321] py-16 text-white md:py-24">
-          <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: "linear-gradient(135deg, transparent 0 68%, rgba(215,25,32,0.24) 68.1%, transparent 68.4%), radial-gradient(circle at 95% 10%, rgba(240,39,50,0.18), transparent 26rem)" }} />
-          <div className="section-container section-px relative z-10">
-            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="mb-2 font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">Upcoming tournament / 24 October 2026</p>
-                <h2 className="font-display text-3xl font-bold uppercase md:text-4xl">The next big moment</h2>
-              </div>
-              <span className="border border-amber-300/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-widest text-amber-200">Money prizes</span>
+      <section className="relative overflow-hidden bg-[#091321] py-16 text-white md:py-24">
+        <div className="pointer-events-none absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 95% 10%, rgba(240,39,50,0.18), transparent 26rem)" }} />
+        <div className="section-container section-px relative z-10">
+          <div className="mb-9 max-w-3xl">
+            <p className="mb-3 font-display text-xs font-semibold uppercase tracking-[0.2em] text-red-accent">Save the dates / England</p>
+            <h2 className="font-display text-3xl font-bold uppercase md:text-4xl">Three major international karate competitions</h2>
+            <p className="mt-4 text-base leading-relaxed text-white/70">Join us at Harlow Leisurezone, Essex, CM20 3DT. Entries will be limited. Registration links and further information will be announced on Sportdata and our official channels.</p>
+          </div>
+          <div className="grid items-start gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+            <div className="relative mx-auto aspect-[2/3] w-full max-w-[500px] overflow-hidden rounded-lg border border-white/15 bg-black/30 shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+              <Image
+                src="/WhatsApp Image 2026-11-10 at 6.07.18 PM.jpeg"
+                alt="Elite Karate Events 2027 calendar poster showing the Harlow Open, Lions Open and Elite Open dates"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-contain"
+              />
             </div>
-
-            <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-              <div>
-                <div className="relative aspect-[1.48] overflow-hidden rounded-lg border border-white/15 bg-black/30 shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
-                  <Image src="/championship-2026.jpg" alt="Elite Open 10th International Karate Grand Prix poster, Saturday 24 October 2026 at K2 Crawley" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { name: "10th Harlow Open", date: "Sunday 31 January 2027" },
+                { name: "10th Lions Open", date: "Sunday 6 June 2027" },
+                { name: "11th Elite Open – International Karate Grand Prix", date: "Sunday 17 October 2027" },
+              ].map((event) => (
+                <div key={event.name} className="border border-white/10 bg-white/[0.04] p-5">
+                  <p className="font-display text-xs font-semibold uppercase tracking-widest text-amber-200">{event.date}</p>
+                  <h3 className="mt-3 font-display text-xl font-bold uppercase leading-tight">{event.name}</h3>
+                  <p className="mt-3 text-sm text-white/60">Harlow Leisurezone · Harlow, Essex CM20 3DT</p>
                 </div>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <a href={grandPrix.playerRegistrationUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#d8b45a] px-5 py-3 text-center font-display text-xs font-bold uppercase tracking-wider text-[#11151d] transition hover:bg-[#f0d27c]">
-                    Player registration <ArrowRight size={15} />
-                  </a>
-                  <a href={grandPrix.clubRegistrationUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-3 text-center font-display text-xs font-bold uppercase tracking-wider text-white transition hover:border-red-accent hover:bg-white/10">
-                    Club registration <ArrowRight size={15} />
-                  </a>
-                  {grandPrix.bulletinUrl && (
-                    <a href={grandPrix.bulletinUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 px-5 py-3 text-center font-display text-xs font-bold uppercase tracking-wider text-white transition hover:border-red-accent sm:col-span-2">
-                      <Download size={15} /> Competition bulletin PDF
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <div className="pt-1 lg:pt-4">
-                <p className="mb-3 font-display text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">Organized by Elite Karate Club</p>
-                <h3 className="font-display text-4xl font-bold uppercase leading-[0.98] md:text-5xl">Elite Open<br /><span className="text-red-accent">10th International</span><br />Karate Grand Prix</h3>
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                  <div className="border border-white/10 bg-white/[0.04] p-4">
-                    <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-amber-200">Date</p>
-                    <p className="mt-2 text-lg font-semibold">Saturday 24 October 2026</p>
-                  </div>
-                  <div className="border border-white/10 bg-white/[0.04] p-4">
-                    <p className="font-display text-[11px] font-semibold uppercase tracking-widest text-amber-200">Venue</p>
-                    <p className="mt-2 text-lg font-semibold">K2 Crawley</p>
-                    <p className="text-sm text-white/55">RH11 9BQ, England</p>
-                  </div>
-                </div>
-                <div className="mt-5 border-l-2 border-red-accent pl-5">
-                  <p className="font-display text-xs font-semibold uppercase tracking-widest text-white/55">Competition categories</p>
-                  <p className="mt-2 text-base font-semibold leading-relaxed text-white/85">Para Kata · Kata · Team Kata · Kumite · Team Kumite</p>
-                </div>
-                <a href={`/events/${grandPrix.slug}`} className="mt-7 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-white hover:text-red-accent">
-                  Tournament details <ArrowRight size={16} />
-                </a>
+              ))}
+              <div className="flex flex-col justify-center border border-red-accent/30 bg-red-accent/10 p-5 sm:col-span-2">
+                <p className="font-display text-sm font-bold uppercase tracking-wider text-red-accent">Limited entries</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">Follow our official channels for registration announcements. Register early when entries open to avoid disappointment.</p>
+                <Link href="/events" className="mt-4 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-white hover:text-red-accent">
+                  Explore upcoming events <ArrowRight size={16} />
+                </Link>
               </div>
             </div>
           </div>
-        </section>
-      )}
-
-      <FeaturedCommunityEvents events={events} />
+        </div>
+      </section>
 
       {/* WHY ELITE KARATE EVENTS */}
       <section className="section-py bg-dark-primary text-white relative overflow-hidden">
@@ -221,7 +211,7 @@ export default function Home() {
             <p className="section-description">Browse and register for premium karate competitions.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
             {upcomingEvents.map((event) => (
               <EventCard
                 key={event.id}
@@ -259,7 +249,7 @@ export default function Home() {
           <div className="section-header">
             <span className="section-label">PREMIER</span>
             <h2 className="section-title text-white">Elite Championships</h2>
-            <p className="section-description text-white/70">The most prestigious karate championships in the world.</p>
+            <p className="section-description text-white/70">Three international karate competitions are coming to Harlow in 2027.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -291,21 +281,31 @@ export default function Home() {
           <div className="section-header">
             <span className="section-label">FEATURED</span>
             <h2 className="section-title">Athlete Spotlight</h2>
-            <p className="section-description">Meet elite athletes competing on the world stage.</p>
+            <p className="section-description">Meet the athletes featured on the Shito Ryu England squad-training poster.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {featuredAthletes.map((athlete) => (
-              <AthleteCard
-                key={athlete.id}
-                slug={athlete.slug}
-                name={athlete.name}
-                country={athlete.country}
-                dojo={athlete.dojo}
-                discipline={athlete.discipline}
-                image={athlete.image}
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="relative min-h-[420px] overflow-hidden rounded-lg bg-dark-secondary">
+              <Image
+                src="/Sqad.jpeg"
+                alt="Shito Ryu England squad training poster featuring athletes Maya Harian, Nada Wegrzyn, and Adam Choudhury"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-contain"
               />
-            ))}
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {featuredAthletes.map((athlete) => (
+                <article key={athlete.id} className="flex flex-col justify-center border border-black/10 bg-white p-6 shadow-sm">
+                  <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-red-primary">{athlete.country} / {athlete.discipline}</p>
+                  <h3 className="mt-2 font-display text-2xl font-bold uppercase text-dark-primary">{athlete.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-black/60">{athlete.category}</p>
+                  <Link href={`/athletes/${athlete.slug}`} className="mt-5 inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-wider text-red-primary">
+                    Athlete details <ArrowRight size={15} />
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
 
           <div className="text-center">
@@ -321,13 +321,13 @@ export default function Home() {
       <section className="section-py bg-dark-primary text-white relative overflow-hidden">
         <div className="section-container section-px text-center">
           <div className="section-header max-w-2xl mx-auto">
-            <span className="section-label">SCORES</span>
-            <h2 className="section-title text-white">Latest Results</h2>
-            <p className="section-description text-white/70">Check out competition results and leaderboards.</p>
+            <span className="section-label">ARCHIVE</span>
+            <h2 className="section-title text-white">Past Events</h2>
+            <p className="section-description text-white/70">Browse event reports, posters, and photos from our past competitions and seminars.</p>
           </div>
 
-          <Link href="/results" className="btn-primary inline-flex items-center gap-2">
-            VIEW ALL RESULTS
+          <Link           href="/past-events" className="btn-primary inline-flex items-center gap-2">
+            VIEW PAST EVENTS
             <ArrowRight size={18} />
           </Link>
         </div>

@@ -4,7 +4,7 @@ import { CalendarDays, MapPin, Trophy } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { EventDirectory } from "@/components/EventDirectory";
-import { events } from "@/data/events";
+import { getUpcomingEvents } from "@/data/events";
 
 export const metadata: Metadata = {
   title: "Events | Elite Karate Events",
@@ -12,12 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
+  const upcomingEvents = getUpcomingEvents();
+
   return (
     <main className="bg-white pt-20">
       <Navigation />
       <section className="relative isolate overflow-hidden bg-dark-primary text-white">
         <div className="absolute inset-0 -z-20">
-          <Image src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=2000&h=1200&fit=crop" alt="Karate athletes competing" fill priority sizes="100vw" className="object-cover opacity-35" />
+          <Image src="/WhatsApp Image 2026-11-10 at 6.07.19 PM (2).jpeg" alt="Elite Karate Events 2027 competitions poster" fill priority sizes="100vw" className="object-cover opacity-35" />
         </div>
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-dark-primary via-dark-primary/90 to-dark-primary/35" />
         <div className="absolute inset-0 -z-10 opacity-20" style={{ backgroundImage: "linear-gradient(135deg, transparent 0 58%, rgba(215,25,32,0.7) 58% 58.2%, transparent 58.2% 100%)" }} />
@@ -35,14 +37,14 @@ export default function EventsPage() {
             <div className="flex h-40 w-40 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm lg:h-52 lg:w-52">
               <div className="flex h-32 w-32 flex-col items-center justify-center rounded-full border border-red-accent/60 lg:h-44 lg:w-44">
                 <Trophy size={27} className="mb-2 text-red-accent" />
-                <span className="font-display text-3xl font-bold">{events.length}</span>
+                <span className="font-display text-3xl font-bold">{upcomingEvents.length}</span>
                 <span className="font-display text-[10px] font-semibold uppercase tracking-[0.2em] text-white/65">events</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <EventDirectory events={events} />
+      <EventDirectory events={upcomingEvents} />
       <Footer />
     </main>
   );

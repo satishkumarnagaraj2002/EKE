@@ -19,12 +19,12 @@ export function Navigation() {
   }, []);
 
   const navLinks = [
-    { href: "/events", label: "EVENTS" },
-    { href: "/championships", label: "CHAMPIONSHIPS" },
-    { href: "/athletes", label: "ATHLETES" },
-    { href: "/results", label: "RESULTS" },
+    { href: "/", label: "HOME" },
+    { href: "/about", label: "ABOUT US" },
+    { href: "/events", label: "UPCOMING EVENTS" },
+    { href: "/past-events", label: "PAST EVENTS" },
     { href: "/news", label: "NEWS" },
-    { href: "/gallery", label: "GALLERY" },
+    { href: "/contact", label: "CONTACT" },
   ];
 
   return (

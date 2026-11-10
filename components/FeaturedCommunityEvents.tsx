@@ -80,7 +80,7 @@ export function FeaturedCommunityEvents({ events }: FeaturedCommunityEventsProps
               </div>
 
               <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/55">
-                <a href="mailto:shitoryuengland@gmail.com" className="inline-flex items-center gap-2 hover:text-white"><Mail size={14} />shitoryuengland@gmail.com</a>
+                <a href="mailto:elitekaratelondon@gmail.com" className="inline-flex items-center gap-2 hover:text-white"><Mail size={14} />elitekaratelondon@gmail.com</a>
                 <a href="tel:+447438052254" className="inline-flex items-center gap-2 hover:text-white"><Phone size={14} />07438 052 254</a>
               </div>
             </div>
@@ -164,7 +164,7 @@ export function FeaturedCommunityEvents({ events }: FeaturedCommunityEventsProps
                 <div className="border-t border-black/10 p-5 text-sm leading-relaxed text-black/70">
                   <p>Support helps provide high-quality prizes and a better competitor experience. Opportunities include company banners at the venue, flyers for attendees, promotion through club WhatsApp groups, club advertising and other options by agreement. Financial contributions, prizes, products and other support are welcome.</p>
                   <p className="mt-3">Past Inter-Club Championships have been a starting point for athletes who later won international medals. This could be the beginning of another competitor’s journey.</p>
-                  <a href="mailto:info@elitekarateclub.net" className="mt-4 inline-flex items-center gap-2 font-semibold text-red-primary"><Mail size={15} />Contact Elite Karate Club</a>
+                  <a href="mailto:elitekaratelondon@gmail.com" className="mt-4 inline-flex items-center gap-2 font-semibold text-red-primary"><Mail size={15} />Contact Elite Karate Club</a>
                 </div>
               </details>
             </div>
